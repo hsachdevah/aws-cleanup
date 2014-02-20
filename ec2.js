@@ -10,6 +10,8 @@ var DryRun = false;
 for (var r in regions) {
 	var ec2 = new AWS.EC2({region:regions[r]});
 	var describeInstances = ec2.describeInstances();
+	var describeAddresses = ec2.describeAddresses(); //For Elastic IPs
+	
 
 	describeInstances.on('success',function(resp){
 		var Instances = new Array();		
@@ -58,5 +60,43 @@ for (var r in regions) {
 		console.log(resp);
 	})
 
+	describeAddresses.on('success',function(resp){
+		if (resp.data.Addresses.length>0) {
+			var region = resp.request.httpRequest.region;
+			// console.log(resp.data);
+			for(var a in resp.data.Addresses){
+				if(resp.data.Addresses[a].Domain=='vpc'){
+					var AllocationId = resp.data.Addresses[a].AllocationId;
+					var params = {
+					  AllocationId: AllocationId
+					  // PublicIp: '54.206.69.145'
+					};
+
+					console.log(region);
+					var ec2 = new AWS.EC2({region:region});
+					var releaseAddress = ec2.releaseAddress(params);
+
+					releaseAddress.on('error',function(resp){
+						console.log('Error occured while releasing Network Addresses: ');
+						console.log(releaseAddress);
+						console.log(resp);
+					});
+					releaseAddress.on('success',function(resp){
+						console.log('Successfully released EIP');
+						// console.log(resp);
+					});
+					releaseAddress.send();
+				};
+			}
+		};
+		
+	})
+
+	describeAddresses.on('error',function(resp){
+		console.log('Error occured while describing Network Addresses: ');
+		console.log(resp);
+	})
+
 	describeInstances.send();
+	describeAddresses.send();
 };
