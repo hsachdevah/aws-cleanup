@@ -1,7 +1,7 @@
 var config = require('./config.json');
 var ec2 = require('./ec2/ec2.js');
 var eip = require('./ec2/eip.js');
-
+var elb = require('./ec2/elb.js');
 
 var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./aws-credentials.json');
@@ -16,6 +16,7 @@ for(var region in regions){
 	if(regions[region]=="true"){
 		ec2.clean(AWS,region);
 		eip.clean(AWS,region);
+		elb.clean(AWS,region);
 	}
 
 }
