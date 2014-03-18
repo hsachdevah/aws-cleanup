@@ -1,9 +1,5 @@
 {
-  "name": "aws-cleanup",
-  "description": "AWS Cleanup Application",
-  "version": "0.1",
-  "private": true,
   "dependencies": {
-    "aws-sdk": "*"
+    "aws-sdk": ">=1.8.0"
   }
 }
