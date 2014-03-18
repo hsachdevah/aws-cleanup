@@ -6,6 +6,16 @@ Cleanups following services for the regions configured in config.json
 - Elastic IPs
 - Elastic Load Balancers (ELBs)
 
+## Installing
+
+Open terminal & execute the following commands to execute
+
+```sh
+git clone https://github.com/hsachdevah/aws-cleanup-node.git
+cd aws-cleanup-node
+npm install
+```
+
 Note: 
 Create a file with name "aws-credentials.json" in the same directory as cleanup.js and add the following content
 
