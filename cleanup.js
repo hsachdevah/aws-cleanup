@@ -1,8 +1,9 @@
+var AWS = require('aws-sdk');
 var config = require('./config.json');
 var ec2 = require('./ec2/ec2.js');
 var eip = require('./ec2/eip.js');
 var elb = require('./ec2/elb.js');
-var AWS = require('aws-sdk');
+var rds = require('./rds/rds.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
@@ -33,6 +34,7 @@ function clean(){
 			ec2.clean(AWS,region);
 			eip.clean(AWS,region);
 			elb.clean(AWS,region);
+			rds.clean(AWS,region);
 		}
 	}	
 }
