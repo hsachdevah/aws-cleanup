@@ -12,7 +12,7 @@ var cred = {};
 
 if (fs.existsSync('./aws-credentials.json')) {
     AWS.config.loadFromPath('./aws-credentials.json');
-    clean()
+    confirm();
 }
 else{
 	prompt.start();
@@ -22,7 +22,23 @@ else{
 		cred['region'] = "us-east-1";
 		
 		AWS.config.update(cred);
-		clean();
+		confirm();
+	});
+	
+}
+
+function confirm(){
+	console.log('WARNING: You are about to delete your AWS resources permanently. Are you sure you want to proceed?')
+	var property = {
+		name: 'yesno',
+		message: 'yes/no?',
+		validator: /y[es]*|n[o]?/,
+		warning: 'Must respond yes or no',
+		default: 'no'
+	};
+	prompt.get(property, function (err, result) {
+		if(result.yesno == 'yes' || result.yesno == 'y')
+			clean();
 	});
 }
 

@@ -21,7 +21,7 @@ You can execute the cleanup task by running cleanup.js. You would be asked to pr
 node cleanup.js
 ```
 
-<strong>Note</strong>: You can also store credentials in a config so you don't have to enter them every time you execute the cleanup task. Create a file with name "aws-credentials.json" in the same directory as cleanup.js with the following content
+<strong>Note</strong>: You can also store credentials locally so you don't have to enter them every time you execute the cleanup task. Create a file with name "aws-credentials.json" in the same directory as cleanup.js with the following content
 
 ```json
 { 
