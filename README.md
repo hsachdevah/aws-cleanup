@@ -46,6 +46,6 @@ The following services are supported in latest version:
 		<tr><td>EC2</td><td>Only instances with status 'running' will get terminated.</td></tr>
 		<tr><td>Elastic IP</td><td></td></tr>
 		<tr><td>ELB</td><td></td></tr>
-		<tr><td>RDS</td><td></td></tr>
+		<tr><td>RDS</td><td></td>Only DB instances with status 'available' will get deleted</tr>
 	</tbody>
 </table>
