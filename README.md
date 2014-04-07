@@ -2,7 +2,7 @@
 
 This project helps to terminate/delete all the resources in a given AWS account.
 
-This is particularly useful if you are learining to work with AWS & don't want to accidently leave any service in running state only to find out that you have been charged on your credit card at month end.
+This is particularly useful if you are learning to work with AWS & don't want to accidentally leave any service in running state only to find out that you have been charged on your credit card at month end.
 
 ## Installing
 
@@ -44,7 +44,7 @@ The following services are supported in latest version:
 	</thead>
 	<tbody>
 		<tr><td>EC2</td><td>Only instances with status 'running' will get terminated.</td></tr>
-		<tr><td>Elastic IP</td><td></td></tr>
+		<tr><td>Elastic IP</td><td>Only EIPs with scope 'vpc' will get released</td></tr>
 		<tr><td>ELB</td><td></td></tr>
 		<tr><td>RDS</td><td>Only DB instances with status 'available' will get deleted</td></tr>
 	</tbody>
