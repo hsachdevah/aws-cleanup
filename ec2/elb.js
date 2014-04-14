@@ -14,8 +14,12 @@ var clean = function clean(AWS,region){
 	});
 
 	describeLoadBalancers.on('error',function(resp){
-		console.log('Error occured while describing Load Balancers: ');
-		console.log(resp);
+		if(resp['code']=='AccessDenied')
+			console.log('ERROR: Access denied to describe load balancers in',region);
+		else{
+			console.log('Error occured while describing Balancers: ');
+			console.log(resp);	
+		}
 	});
 
 	describeLoadBalancers.send()

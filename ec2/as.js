@@ -14,8 +14,13 @@ var clean = function clean(AWS,region){
 	});
 
 	describeAutoScalingGroups.on('error',function(resp){
-		console.log('Error occured while describing AutoScaling Groups: ');
-		console.log(resp);
+		if(resp['code']=='AccessDenied')
+			console.log('ERROR: Access denied to describe AutoScaling Groups in',region);
+		else{
+			console.log('Error occured while describing AutoScaling Groups: ');
+			console.log(resp);	
+		}
+		
 	});
 
 	describeAutoScalingGroups.send();
