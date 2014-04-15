@@ -14,8 +14,12 @@ var clean = function clean(AWS,region){
 	});
 
 	describeAddresses.on('error',function(resp){
-		console.log('Error occured while describing Network Addresses: ');
-		console.log(resp);
+		if(resp['code']=='UnauthorizedOperation')
+			console.log('ERROR: Access denied to describe network addresses in',region);
+		else{
+			console.log('Error occured while describing Network Addresses: ');
+			console.log(resp);	
+		}
 	});
 
 	describeAddresses.send();
