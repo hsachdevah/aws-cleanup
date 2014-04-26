@@ -3,6 +3,7 @@ var config = require('./config.json');
 var ec2 = require('./ec2/ec2.js');
 var eip = require('./ec2/eip.js');
 var elb = require('./ec2/elb.js');
+var ebs = require('./ec2/ebs.js');
 var rds = require('./rds/rds.js');
 var as = require('./ec2/as.js');
 var prompt = require('prompt');
@@ -56,6 +57,8 @@ function clean(){
 				eip.clean(AWS,region);
 			if(config['services']['elb'])
 				elb.clean(AWS,region);
+			if(config['services']['ebs'])
+				ebs.clean(AWS,region);
 			if(config['services']['rds'])
 				rds.clean(AWS,region);
 		}
