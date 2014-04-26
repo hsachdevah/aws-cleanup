@@ -21,8 +21,13 @@ var clean = function clean(AWS,region){
 	});
 
 	describeDBInstances.on('error',function(resp){
+		if(resp['code']=='AccessDenied')
+			console.log('ERROR: Access denied to describe DB Instances in',region);
+		else{
 			console.log('Error occured while describing DB Instances: ');
 			console.log(resp);
+		}
+		
 	});
 	describeDBInstances.send();
 }

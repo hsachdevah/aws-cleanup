@@ -13,6 +13,8 @@
 		"ec2":true,
 		"eip":true,
 		"elb":true,
-		"rds":true
+		"ebs":true,
+		"rds":true,
+		"as":true
 	}
 }

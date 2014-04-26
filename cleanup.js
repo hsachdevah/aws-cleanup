@@ -3,7 +3,9 @@ var config = require('./config.json');
 var ec2 = require('./ec2/ec2.js');
 var eip = require('./ec2/eip.js');
 var elb = require('./ec2/elb.js');
+var ebs = require('./ec2/ebs.js');
 var rds = require('./rds/rds.js');
+var as = require('./ec2/as.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
@@ -47,10 +49,18 @@ function clean(){
 	console.log("Starting cleanup process ...");
 	for(var region in regions){
 		if(regions[region]=="true"){
-			ec2.clean(AWS,region);
-			eip.clean(AWS,region);
-			elb.clean(AWS,region);
-			rds.clean(AWS,region);
+			if(config['services']['as'])
+				as.clean(AWS,region);
+			if(config['services']['ec2'])
+				ec2.clean(AWS,region);
+			if(config['services']['eip'])
+				eip.clean(AWS,region);
+			if(config['services']['elb'])
+				elb.clean(AWS,region);
+			if(config['services']['ebs'])
+				ebs.clean(AWS,region);
+			if(config['services']['rds'])
+				rds.clean(AWS,region);
 		}
 	}	
 }

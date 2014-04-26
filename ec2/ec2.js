@@ -26,8 +26,13 @@ var clean = function clean(AWS,region){
 	});
 
 	describeInstances.on('error',function(resp){
-			console.log('Error occured while describing Instances: ');
-			console.log(resp);
+			if(resp['code']=='UnauthorizedOperation')
+				console.log('ERROR: Access denied to describe instances in',region);
+			else{
+				console.log('Error occured while describing Instances: ');
+				console.log(resp);	
+			}
+			
 	});
 
 	describeInstances.send();
