@@ -29,7 +29,6 @@ module.exports.clean = clean;
 var release = function(AWS,region,AllocationId){
 	var params = {
 		AllocationId: AllocationId
-		// PublicIp: '54.206.69.145'
 	};
 
 	var ec2 = new AWS.EC2({region:region});

@@ -6,6 +6,7 @@ var elb = require('./ec2/elb.js');
 var ebs = require('./ec2/ebs.js');
 var rds = require('./rds/rds.js');
 var as = require('./ec2/as.js');
+var redshift = require('./redshift/redshift.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
@@ -61,6 +62,8 @@ function clean(){
 				ebs.clean(AWS,region);
 			if(config['services']['rds'])
 				rds.clean(AWS,region);
+			if(config['services']['redshift'])
+				redshift.clean(AWS,region);
 		}
 	}	
 }
