@@ -10,13 +10,13 @@
 		"ap-northeast-1":"true"
 	},
 	"services":{
-		"ec2":false,
-		"eip":false,
-		"elb":false,
-		"ebs":false,
-		"rds":false,
-		"as":false,
-		"redshift":false,
-		"sns":false,
+		"ec2":true,
+		"eip":true,
+		"elb":true,
+		"ebs":true,
+		"rds":true,
+		"as":true,
+		"redshift":true,
+		"sns":true,
 	}
 }
