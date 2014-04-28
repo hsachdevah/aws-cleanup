@@ -49,5 +49,6 @@ The following services are supported in latest version:
 		<tr><td>AutoScalingGroups</td><td>Sets Desired Capacity to 0</td></tr>
 		<tr><td>ELB</td><td></td></tr>
 		<tr><td>RDS</td><td>Only DB instances with status 'available' will get deleted</td></tr>
+		<tr><td>Redshift</td><td></td></tr>
 	</tbody>
 </table>
