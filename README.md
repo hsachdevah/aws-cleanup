@@ -43,12 +43,13 @@ The following services are supported in latest version:
 		<th>Notes</th>
 	</thead>
 	<tbody>
-		<tr><td>EC2</td><td>Only instances with status 'running' will get terminated.</td></tr>
-		<tr><td>EBS</td><td>Only volumes with status 'available' will get deleted.</td></tr>
-		<tr><td>Elastic IP</td><td>Only EIPs with scope 'vpc' will get released</td></tr>
 		<tr><td>AutoScalingGroups</td><td>Sets Desired Capacity to 0</td></tr>
+		<tr><td>EBS</td><td>Only volumes with status 'available' will get deleted.</td></tr>
+		<tr><td>EC2</td><td>Only instances with status 'running' will get terminated.</td></tr>
+		<tr><td>Elastic IP</td><td>Only EIPs with scope 'vpc' will get released</td></tr>
 		<tr><td>ELB</td><td></td></tr>
-		<tr><td>RDS</td><td>Only DB instances with status 'available' will get deleted</td></tr>
 		<tr><td>Redshift</td><td></td></tr>
+		<tr><td>RDS</td><td>Only DB instances with status 'available' will get deleted</td></tr>
+		<tr><td>SNS</td><td>Deletes SNS topics</td></tr>
 	</tbody>
 </table>

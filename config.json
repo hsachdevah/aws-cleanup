@@ -16,6 +16,7 @@
 		"ebs":true,
 		"rds":true,
 		"as":true,
-		"redshift":true
+		"redshift":true,
+		"sns":true
 	}
 }
