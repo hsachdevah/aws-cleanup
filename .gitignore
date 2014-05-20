@@ -1,5 +1,7 @@
 node_modules/
 aws-credentials.json
+config.json
+
 =======
 #################
 ## Eclipse
