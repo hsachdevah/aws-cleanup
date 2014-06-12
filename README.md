@@ -8,6 +8,8 @@ This is particularly useful if you are learning to work with AWS & don't want to
 
 You would require node.js installed on your system to use aws-cleanup. In case its not already installed, you can get it from here: http://nodejs.org/
 
+You also need ```npm``` installed on your system so that required dependencies can be downloaded. Install it from the instructions provided at this site : https://www.npmjs.org/
+
 You can get the code & required modules (including AWS-SDK for node.js) by executing the following commands
 
 ```sh
@@ -38,14 +40,14 @@ The given access key & secret key should have all the permissions to list/delete
 The following services are supported in latest version:
 
 
-| Services 				| Notes          											|
-| ---------------------	| ---------------------------------------------------------	|
-| AutoScalingGroups     | Sets Desired Capacity to 0 								|
-| CloudWatch		    | Disbled by default, check config.json. Billing Alarms are not deleted	|
-| EBS				    | Only volumes with status 'available' will get deleted		|
-| EC2				    | Only instances with status 'running' will get terminated	|
-| Elastic IP		    | Only EIPs with scope 'vpc' will get released				|
-| ELB				    | 									     					|
-| Redshift			    | 									     					|
-| RDS				    | Only DB instances with status 'available' will get deleted|
-| SNS				    | Disbled by default, check config.json 					|
+| Services 				| Notes          												|
+| ---------------------	| ---------------------------------------------------------		|
+| AutoScalingGroups     | Sets Desired Capacity to 0 									|
+| CloudWatch		    | Disabled by default, check config.json. Billing Alarms are not deleted	|
+| EBS				    | Only volumes with status 'available' will get deleted			|
+| EC2				    | Only instances with status 'running' will get terminated		|
+| Elastic IP		    | Only EIPs with scope 'vpc' will get released					|
+| ELB				    | 									     						|
+| Redshift			    | 									     						|
+| RDS				    | Only DB instances with status 'available' will get deleted	|
+| SNS				    | Disabled by default, check config.json 						|
