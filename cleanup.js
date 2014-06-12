@@ -9,6 +9,7 @@ var as = require('./ec2/as.js');
 var redshift = require('./redshift/redshift.js');
 var sns = require('./sns.js');
 var emr = require('./emr.js');
+var cloudwatch = require('./cloudwatch.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
@@ -68,6 +69,8 @@ function clean(){
 				redshift.clean(AWS,region);
 			if(config['services']['sns'])
 				sns.clean(AWS,region);
+			if(config['services']['cloudwatch'])
+				cloudwatch.clean(AWS,region);
 			// if(config['services']['emr'])
 			// 	emr.clean(AWS,region);
 		}

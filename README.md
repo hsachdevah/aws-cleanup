@@ -37,20 +37,15 @@ The given access key & secret key should have all the permissions to list/delete
 
 The following services are supported in latest version:
 
-<table>
-	<thead>
-		<th>Service Name</th>
-		<th>Notes</th>
-	</thead>
-	<tbody>
-		<tr><td>AutoScalingGroups</td><td>Sets Desired Capacity to 0</td></tr>
-		<tr><td>EBS</td><td>Only volumes with status 'available' will get deleted.</td></tr>
-		<tr><td>EC2</td><td>Only instances with status 'running' will get terminated.</td></tr>
-		<tr><td>Elastic IP</td><td>Only EIPs with scope 'vpc' will get released</td></tr>
-		<tr><td>ELB</td><td></td></tr>
-		<!-- <tr><td>EMR</td><td></td></tr> -->
-		<tr><td>Redshift</td><td></td></tr>
-		<tr><td>RDS</td><td>Only DB instances with status 'available' will get deleted</td></tr>
-		<tr><td>SNS</td><td>Deletes SNS topics</td></tr>
-	</tbody>
-</table>
+
+| Services 				| Notes          											|
+| ---------------------	| ---------------------------------------------------------	|
+| AutoScalingGroups     | Sets Desired Capacity to 0 								|
+| CloudWatch		    | Disbled by default, check config.json. Billing Alarms are not deleted	|
+| EBS				    | Only volumes with status 'available' will get deleted		|
+| EC2				    | Only instances with status 'running' will get terminated	|
+| Elastic IP		    | Only EIPs with scope 'vpc' will get released				|
+| ELB				    | 									     					|
+| Redshift			    | 									     					|
+| RDS				    | Only DB instances with status 'available' will get deleted|
+| SNS				    | Disbled by default, check config.json 					|

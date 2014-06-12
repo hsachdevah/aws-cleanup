@@ -17,6 +17,7 @@
 		"rds":true,
 		"as":true,
 		"redshift":true,
-		"sns":true
+		"sns":false,
+		"cloudwatch":false
 	}
 }
