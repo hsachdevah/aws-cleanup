@@ -8,7 +8,9 @@ var clean = function clean(AWS,region){
 			for(var a in resp.data.AutoScalingGroups){
 				var ASGroupName = resp.data.AutoScalingGroups[a].AutoScalingGroupName;
 				if(resp.data.AutoScalingGroups[a].DesiredCapacity != 0)
-					setCapacity(AWS,region,ASGroupName);
+					// setCapacity(AWS,region,ASGroupName);
+					updateASG(AWS,region,ASGroupName);
+
 			}
 		};
 	});
@@ -46,4 +48,27 @@ var setCapacity = function(AWS,region,ASGroupName){
 		// console.log(resp);
 	});
 	setDesiredCapacity.send();
+}
+
+var updateASG = function(AWS,region,ASGroupName){
+	var params = {
+		AutoScalingGroupName: ASGroupName,
+		DesiredCapacity: 0,
+		MaxSize: 0,
+		MinSize: 0,
+	};
+
+	var as = new AWS.AutoScaling({region:region});
+	var updateAutoScalingGroup = as.updateAutoScalingGroup(params);
+
+	updateAutoScalingGroup.on('error',function(resp){
+		console.log('Error occured while setting capacity of AutoScaling Group');
+		console.log(resp);
+	});
+	updateAutoScalingGroup.on('success',function(resp){
+		console.log('Successfully reset ASG', ASGroupName,'capacity in region',region);
+		// console.log(resp);
+	});
+	updateAutoScalingGroup.send();
+
 }
