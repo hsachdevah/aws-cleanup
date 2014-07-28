@@ -10,6 +10,7 @@ var redshift = require('./redshift/redshift.js');
 var sns = require('./sns.js');
 var emr = require('./emr.js');
 var cloudwatch = require('./cloudwatch.js');
+var datapipeline = require('./datapipeline.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
@@ -71,6 +72,8 @@ function clean(){
 				sns.clean(AWS,region);
 			if(config['services']['cloudwatch'])
 				cloudwatch.clean(AWS,region);
+			if(config['services']['datapipeline'])
+				datapipeline.clean(AWS,region);
 			// if(config['services']['emr'])
 			// 	emr.clean(AWS,region);
 		}

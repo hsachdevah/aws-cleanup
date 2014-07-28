@@ -10,6 +10,13 @@ You would require node.js installed on your system to use aws-cleanup. In case i
 
 You also need ```npm``` installed on your system so that required dependencies can be downloaded. Install it from the instructions provided at this site : https://www.npmjs.org/
 
+If these are successfully installed, you should be able to get a valid results from the commands below
+
+```sh
+node -v
+npm -v
+```
+
 You can get the code & required modules (including AWS-SDK for node.js) by executing the following commands
 
 ```sh
