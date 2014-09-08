@@ -72,8 +72,6 @@ function clean(){
 				sns.clean(AWS,region);
 			if(config['services']['cloudwatch'])
 				cloudwatch.clean(AWS,region);
-			if(config['services']['datapipeline'])
-				datapipeline.clean(AWS,region);
 			// if(config['services']['emr'])
 			// 	emr.clean(AWS,region);
 		}

@@ -5,24 +5,21 @@ var clean = function clean(AWS,region){
 	var describeInstances = ec2.describeInstances();
 
 	describeInstances.on('success',function(resp){
-		var Instances = new Array();		
+		
 		var response = resp.data;
 
 		// Get list of instances
 		for (var i in response['Reservations']) {
 			var reservation = response['Reservations'][i];
 			for (var j in reservation['Instances']) {
+				// console.log(reservation['Instances'][j]);
 				if (reservation['Instances'][j]['State']['Name']=='running') {
-					Instances.push(reservation['Instances'][j]['InstanceId']);
+					var InstanceId = reservation['Instances'][j]['InstanceId'];
+					setForTermination(AWS,region,InstanceId);
 				};
 			};
 		};
 
-		if(Instances.length > 0)
-			terminate(AWS,region,Instances);
-
-		// for(var instance in Instances)
-		// 	terminate(region,Instances[instance]);
 	});
 
 	describeInstances.on('error',function(resp){
@@ -38,6 +35,37 @@ var clean = function clean(AWS,region){
 	describeInstances.send();
 }
 module.exports.clean = clean;
+
+
+var setForTermination = function(AWS,region,InstanceId){
+	var params = {
+	  Attribute: 'disableApiTermination', /* required */
+	  InstanceId: InstanceId, /* required */
+	};
+
+	var Instances = new Array();
+	var ec2 = new AWS.EC2({region:region});
+	var describeInstanceAttribute = ec2.describeInstanceAttribute(params);
+
+	describeInstanceAttribute.on('success',function(resp){
+		if(resp.data.DisableApiTermination.Value == false){
+			Instances.push(InstanceId);
+			terminate(AWS,region,Instances);
+		}
+		else{
+			console.log('WARNING: EC2 instance',InstanceId,'in',region,'has Termination Protection Enabled');
+		}
+
+	});
+
+	describeInstanceAttribute.on('error',function(resp){
+		console.log('Error Attribute: ',resp);
+	});
+
+	describeInstanceAttribute.send();
+}
+
+
 
 var terminate = function(AWS,region, Instances){
 
@@ -59,6 +87,4 @@ var terminate = function(AWS,region, Instances){
 	})
 
 	terminateInstances.send();
-
-	// console.log(region,instanceId);
 }

@@ -52,7 +52,7 @@ The following services are supported in latest version:
 | AutoScalingGroups     | Sets Desired Capacity to 0 									|
 | CloudWatch		    | Disabled by default, check config.json. Billing Alarms are not deleted	|
 | EBS				    | Only volumes with status 'available' will get deleted			|
-| EC2				    | Only instances with status 'running' will get terminated		|
+| EC2				    | Only instances with status 'running' & 'Termination Protection' disabled will get terminated		|
 | Elastic IP		    | Only EIPs with scope 'vpc' will get released					|
 | ELB				    | 									     						|
 | Redshift			    | 									     						|
