@@ -4,18 +4,19 @@ var ec2 = require('./ec2/ec2.js');
 var eip = require('./ec2/eip.js');
 var elb = require('./ec2/elb.js');
 var ebs = require('./ec2/ebs.js');
+var ebsSnapshot = require('./ec2/ebsSnapshot.js');
 var rds = require('./rds/rds.js');
 var as = require('./ec2/as.js');
 var redshift = require('./redshift/redshift.js');
 var sns = require('./sns.js');
 var emr = require('./emr.js');
 var cloudwatch = require('./cloudwatch.js');
-var datapipeline = require('./datapipeline.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
 config = JSON.parse(JSON.stringify(config));
 var cred = {};
+var accountId = '';
 
 if (fs.existsSync('./aws-credentials.json')) {
     AWS.config.loadFromPath('./aws-credentials.json');
@@ -44,8 +45,9 @@ function confirm(){
 		default: 'no'
 	};
 	prompt.get(property, function (err, result) {
-		if(result.yesno == 'yes' || result.yesno == 'y')
-			clean();
+		if(result.yesno == 'yes' || result.yesno == 'y'){
+			var data = getAccountId(AWS);
+		}
 	});
 }
 
@@ -72,8 +74,24 @@ function clean(){
 				sns.clean(AWS,region);
 			if(config['services']['cloudwatch'])
 				cloudwatch.clean(AWS,region);
-			// if(config['services']['emr'])
-			// 	emr.clean(AWS,region);
+			if(config['services']['ebsSnapshot']["enabled"])
+			 	ebsSnapshot.clean(AWS,region,accountId,config.services.ebsSnapshot.olderThanDays);
 		}
 	}	
+}
+
+var getAccountId = function (AWS){
+	var iam = new AWS.IAM({apiVersion: '2010-05-08'});
+	var getUser = iam.getUser();
+
+	getUser.on('error',function(resp){
+		console.log('Error occured while get AWS AccountId:');
+		console.log(resp);
+	});
+	getUser.on('success',function(resp){
+		accountId = resp.data.User.Arn.match(/([0-9]+)/)[0];
+		console.log('Successfully determined AWS AccountId:',accountId);
+		clean();
+	});
+	getUser.send();
 }

@@ -14,10 +14,14 @@
 		"eip":true,
 		"elb":true,
 		"ebs":true,
+		"ebsSnapshot":{
+			"enabled":true,
+			"olderThanDays":"0"
+		},
 		"rds":true,
 		"as":true,
 		"redshift":true,
 		"sns":false,
-		"cloudwatch":false,
+		"cloudwatch":false
 	}
 }
