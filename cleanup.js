@@ -10,7 +10,7 @@ var redshift = require('./redshift/redshift.js');
 var sns = require('./sns.js');
 var emr = require('./emr.js');
 var cloudwatch = require('./cloudwatch.js');
-var datapipeline = require('./datapipeline.js');
+//var datapipeline = require('./datapipeline.js');
 var prompt = require('prompt');
 var fs = require('fs');
 
